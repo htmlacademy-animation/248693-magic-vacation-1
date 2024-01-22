@@ -6,9 +6,18 @@
   .swiper-wrapper {
     min-height: 100vh;
     box-sizing: border-box;
+    transition-delay: 0.7s;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    @media (orientation: portrait) {
+      transition-delay: 0.5s;
+    }
+
+    @media (max-width: $mobile) and (orientation: landscape) {
+      transition-delay: 0.5s;
     }
   }
 }
@@ -96,6 +105,37 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+  opacity: 0;
+  transform: translateX(-2rem);
+  transition-property: transform, opacity;
+  transition-timing-function: cubic-bezier(0.25, 0.51, 0.23, 1.02), ease-in-out;
+  transition-duration: 0.8s, 0.6s;
+  transition-delay: 0s;
+
+  .screen.screen--story:not(.active) &,
+  .next ~ .slider__item:not(.active) &,
+  .next ~ .slider__item:not(.next) & {
+    opacity: 0;
+    transform: translateX(2rem);
+    transition-delay: 0s;
+  }
+
+  .slider__item.active &,
+  .slider__item.next & {
+    opacity: 1;
+    transform: translateX(0);
+    transition-timing-function: cubic-bezier(0.25, 0.57, 0.42, 1.03), ease-in-out;
+    transition-duration: 0.5s, 0.3s;
+    transition-delay: 0.6s;
+  }
+
+  .slider__item.next & {
+    transition-delay: 0.8s;
+  }
+
+  .slider__item.prev & {
+    transition-delay: 0.15s;
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
@@ -112,6 +152,27 @@
     min-height: 11.6rem;
     font-size: 1.4rem;
     line-height: 1.5rem;
+    transition-duration: 0.8s, 0.3s;
+
+    .screen.screen--story:not(.active) &,
+    .next ~ .slider__item:not(.active) &,
+    .next ~ .slider__item:not(.next) & {
+      transition-delay: 0.2s;
+    }
+
+    .slider__item.active & {
+      transition-duration: 0.6s, 0.3s;
+    }
+
+    .slider__item.next & {
+      opacity: 0;
+      transform: translateX(2rem);
+      transition-delay: 0.2s;
+    }
+
+    .slider__item.prev & {
+      transition-delay: 0s;
+    }
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
@@ -122,6 +183,27 @@
     min-height: 14rem;
     font-size: 1.4rem;
     line-height: 1.5rem;
+    transition-duration: 0.8s, 0.3s;
+
+    .screen.screen--story:not(.active) &,
+    .next ~ .slider__item:not(.active) &,
+    .next ~ .slider__item:not(.next) & {
+      transition-delay: 0.2s;
+    }
+
+    .slider__item.active & {
+      transition-duration: 0.6s, 0.3s;
+    }
+
+    .slider__item.next & {
+      opacity: 0;
+      transform: translateX(2rem);
+      transition-delay: 0.2s;
+    }
+
+    .slider__item.prev & {
+      transition-delay: 0s;
+    }
   }
 }
 

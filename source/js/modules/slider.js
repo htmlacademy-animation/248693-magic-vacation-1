@@ -8,6 +8,9 @@ export default () => {
   const setSlider = function () {
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
       storySlider = new Swiper(`.js-slider`, {
+        slideActiveClass: `active`,
+        slideNextClass: `next`,
+        slidePrevClass: `prev`,
         pagination: {
           el: `.swiper-pagination`,
           type: `bullets`
@@ -15,6 +18,7 @@ export default () => {
         keyboard: {
           enabled: true
         },
+        speed: 0,
         on: {
           slideChange: () => {
             if (storySlider.activeIndex === 0 || storySlider.activeIndex === 1) {
@@ -36,6 +40,9 @@ export default () => {
       });
     } else {
       storySlider = new Swiper(`.js-slider`, {
+        slideActiveClass: `active`,
+        slideNextClass: `next`,
+        slidePrevClass: `prev`,
         slidesPerView: 2,
         slidesPerGroup: 2,
         pagination: {
@@ -49,6 +56,7 @@ export default () => {
         keyboard: {
           enabled: true
         },
+        speed: 0,
         on: {
           slideChange: () => {
             if (storySlider.activeIndex === 0) {

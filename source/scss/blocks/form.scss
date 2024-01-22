@@ -1,6 +1,7 @@
 .form {
   position: relative;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -42,6 +43,7 @@
   color: $c-dark;
   border: 0;
   border-radius: 3rem;
+  transition: width 0.8s cubic-bezier(0.25, 0.51, 0.23, 1.02);
   outline: none;
 
   &:focus {
@@ -76,10 +78,15 @@
     height: 4rem;
     font-size: 1.6rem;
   }
+
+  .screen.screen--game:not(.active) & {
+    width: 0;
+  }
 }
 
 .form__button {
-  flex-grow: 1;
+  width: 18rem;
+  flex-shrink: 0;
 
   @media (orientation: portrait) {
     position: relative;
