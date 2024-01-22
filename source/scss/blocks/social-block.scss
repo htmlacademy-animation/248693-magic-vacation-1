@@ -17,6 +17,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
+  transition: color 0.35s ease-out;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -34,6 +35,10 @@
     border-radius: 50%;
     background-color: $c-light;
     border: 2px solid $c-light;
+    transition-property: width, height, background-color, border-color;
+    transition-timing-function: ease-out;
+    transition-duration: 0.4s;
+    transition-delay: 0.15s;
     z-index: -1;
   }
 
@@ -89,6 +94,7 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.35s ease-in;
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -127,24 +133,38 @@
     }
   }
 
-  &:hover {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  &:focus-within {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
+  &:hover,
+  &:focus-within,
   .social-block--active & {
     opacity: 1;
     pointer-events: auto;
+
+    li {
+      opacity: 1;
+      transform: translateY(0rem);
+      transition-timing-function: ease-out;
+      transition-duration: 0.35s, 0.5s;
+      transition-delay: 0.15s, 0.15s;
+
+      &:nth-child(2) {
+        transition-delay: 0.3s, 0.3s;
+      }
+
+      &:nth-child(3) {
+        transition-delay: 0.45s, 0.45s;
+      }
+    }
   }
 
   li {
     flex: none;
     margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.83,-0.48, 0.87, 0.63), ease-in;
+    transition-duration: 0.25s;
+    transition-delay: 0.25s, 0s;
 
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
@@ -168,6 +188,7 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  transition: color 0.35s ease-out;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
