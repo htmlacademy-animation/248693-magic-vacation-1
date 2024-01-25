@@ -36,8 +36,8 @@
   width: 10rem;
   color: $c-light;
   transition-property: transform, opacity;
-  transition-timing-function: cubic-bezier(0.17, 0.61, 0.18, 1.03), ease-in;
-  transition-duration: 0.5s, 0.4s;
+  transition-timing-function: $easing-decelerate, ease-in;
+  transition-duration: $duration-medium, $duration-short;
 
   body:not(.loaded) & {
     transform: translateX(-3rem);
@@ -186,9 +186,9 @@
   line-height: 1.0418;
   color: $c-light;
   transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.17, 0.61, 0.18, 1.03);
-  transition-duration: 0.7s;
-  transition-delay: 0.3s;
+  transition-timing-function: $easing-decelerate;
+  transition-duration: $duration-long;
+  transition-delay: $delay-short;
 
   body:not(.loaded) & {
     opacity: 0;
@@ -257,7 +257,7 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
-    transition: color 0.35s ease-out;
+    transition: color $duration-short ease-out;
 
     &::after {
       content: "";
@@ -272,8 +272,8 @@
       opacity: 0;
       transition-property: transform, background-color, opacity;
       transition-timing-function: ease-in-out;
-      transition-duration: 0.45s, 0.15s, 0.15s;
-      transition-delay: 0s, 0s, 0.45s;
+      transition-duration: $duration-short, $duration-extra-short, $duration-extra-short;
+      transition-delay: 0s, 0s, $delay-short;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -292,7 +292,7 @@
       &::after {
         transform: scaleX(1);
         opacity: 1;
-        transition-delay: 0.2s, 0.2s, 0.2s;
+        transition-delay: $delay-short, 0s, 0s;
         transform-origin: left;
       }
     }

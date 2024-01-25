@@ -43,7 +43,7 @@
   color: $c-dark;
   border: 0;
   border-radius: 3rem;
-  transition: width 0.8s cubic-bezier(0.25, 0.51, 0.23, 1.02);
+  transition: width $duration-long $easing-decelerate;
   outline: none;
 
   &:focus {

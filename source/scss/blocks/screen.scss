@@ -49,7 +49,7 @@
   background-color: $c-light;
   z-index: 1;
   transform: translateY(100%);
-  transition: transform 0.7s cubic-bezier(0.17, 0.61, 0.18, 1.03);
+  transition: transform $duration-long $easing-decelerate;
 
   body.loaded & {
     transform: translateY(0%);
