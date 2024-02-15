@@ -19,3 +19,17 @@ $retina-dpi: 144dpi;
 $retina-dppx: 1.5dppx;
 
 $index: 1.38871;
+
+$easing-decelerate: cubic-bezier(0.17, 0.61, 0.18, 1);
+$easing-bouncing: cubic-bezier(0.24, 0.72, 0.4, 1.48);
+
+$duration-extra-short: 150ms;
+$duration-short: 350ms;
+$duration-medium: 600ms;
+$duration-long: 800ms;
+
+$delay-extra-short: 200ms;
+$delay-short: 350ms;
+$delay-medium: 500ms;
+$delay-long: 700ms;
+$delay-extra-long: 800ms;

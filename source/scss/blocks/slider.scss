@@ -6,18 +6,18 @@
   .swiper-wrapper {
     min-height: 100vh;
     box-sizing: border-box;
-    transition-delay: 0.7s;
+    transition-delay: $delay-long;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
     }
 
     @media (orientation: portrait) {
-      transition-delay: 0.5s;
+      transition-delay: $delay-medium;
     }
 
     @media (max-width: $mobile) and (orientation: landscape) {
-      transition-delay: 0.5s;
+      transition-delay: $delay-medium;
     }
   }
 }
@@ -108,8 +108,8 @@
   opacity: 0;
   transform: translateX(-2rem);
   transition-property: transform, opacity;
-  transition-timing-function: cubic-bezier(0.25, 0.51, 0.23, 1.02), ease-in-out;
-  transition-duration: 0.8s, 0.6s;
+  transition-timing-function: $easing-decelerate, ease-in-out;
+  transition-duration: $duration-long, $duration-medium;
   transition-delay: 0s;
 
   .screen.screen--story:not(.active) &,
@@ -124,17 +124,17 @@
   .slider__item.next & {
     opacity: 1;
     transform: translateX(0);
-    transition-timing-function: cubic-bezier(0.25, 0.57, 0.42, 1.03), ease-in-out;
-    transition-duration: 0.5s, 0.3s;
+    transition-timing-function: $easing-decelerate, ease-in-out;
+    transition-duration: $duration-medium, $duration-short;
     transition-delay: 0.6s;
   }
 
   .slider__item.next & {
-    transition-delay: 0.8s;
+    transition-delay: $delay-extra-long;
   }
 
   .slider__item.prev & {
-    transition-delay: 0.15s;
+    transition-delay: $delay-extra-short;
   }
 
   @media (min-width: $stop-scaling) {
@@ -152,22 +152,22 @@
     min-height: 11.6rem;
     font-size: 1.4rem;
     line-height: 1.5rem;
-    transition-duration: 0.8s, 0.3s;
+    transition-duration: $duration-long, $duration-short;
 
     .screen.screen--story:not(.active) &,
     .next ~ .slider__item:not(.active) &,
     .next ~ .slider__item:not(.next) & {
-      transition-delay: 0.2s;
+      transition-delay: $delay-extra-short;
     }
 
     .slider__item.active & {
-      transition-duration: 0.6s, 0.3s;
+      transition-duration: $duration-medium, $duration-short;
     }
 
     .slider__item.next & {
       opacity: 0;
       transform: translateX(2rem);
-      transition-delay: 0.2s;
+      transition-delay: $delay-extra-short;
     }
 
     .slider__item.prev & {
@@ -183,22 +183,22 @@
     min-height: 14rem;
     font-size: 1.4rem;
     line-height: 1.5rem;
-    transition-duration: 0.8s, 0.3s;
+    transition-duration: $duration-long, $duration-short;
 
     .screen.screen--story:not(.active) &,
     .next ~ .slider__item:not(.active) &,
     .next ~ .slider__item:not(.next) & {
-      transition-delay: 0.2s;
+      transition-delay: $delay-extra-short;
     }
 
     .slider__item.active & {
-      transition-duration: 0.6s, 0.3s;
+      transition-duration: $duration-medium, $duration-short;
     }
 
     .slider__item.next & {
       opacity: 0;
       transform: translateX(2rem);
-      transition-delay: 0.2s;
+      transition-delay: $delay-extra-short;
     }
 
     .slider__item.prev & {

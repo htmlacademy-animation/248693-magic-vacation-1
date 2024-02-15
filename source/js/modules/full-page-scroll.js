@@ -1,5 +1,10 @@
 import throttle from 'lodash/throttle';
 
+const TIMEOUT = 800;
+const HIDDEN_CLASS = `screen--hidden`;
+const ACTIVE_CLASS = `active`;
+const ANIMATED_CLASS = `animated`;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 1000;
@@ -52,21 +57,43 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
+    let isHistoryScreen = false;
     this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
+      if (this.screenElements[this.activeScreen].id !== `top` && screen.id === `story` && screen.classList.contains(ACTIVE_CLASS)) {
+        isHistoryScreen = true;
+        screen.classList.remove(ACTIVE_CLASS);
+        screen.classList.add(ANIMATED_CLASS);
+        setTimeout(() => {
+          screen.classList.add(HIDDEN_CLASS);
+          screen.classList.remove(ANIMATED_CLASS);
+        }, TIMEOUT);
+      } else {
+        screen.classList.add(HIDDEN_CLASS);
+        screen.classList.remove(ACTIVE_CLASS);
+      }
     });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+
+    if (isHistoryScreen) {
+      setTimeout(() => {
+        this.setActiveScreen();
+      }, TIMEOUT);
+    } else {
+      this.setActiveScreen();
+    }
+  }
+
+  setActiveScreen() {
+    this.screenElements[this.activeScreen].classList.remove(HIDDEN_CLASS);
     setTimeout(() => {
-      this.screenElements[this.activeScreen].classList.add(`active`);
+      this.screenElements[this.activeScreen].classList.add(ACTIVE_CLASS);
     }, 100);
   }
 
   changeActiveMenuItem() {
     const activeItem = Array.from(this.menuElements).find((item) => item.dataset.href === this.screenElements[this.activeScreen].id);
     if (activeItem) {
-      this.menuElements.forEach((item) => item.classList.remove(`active`));
-      activeItem.classList.add(`active`);
+      this.menuElements.forEach((item) => item.classList.remove(ACTIVE_CLASS));
+      activeItem.classList.add(ACTIVE_CLASS);
     }
   }
 

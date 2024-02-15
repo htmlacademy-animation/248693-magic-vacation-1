@@ -96,9 +96,9 @@
   opacity: 0;
   transform: translateY(3rem);
   transition-property: transform, opacity;
-  transition-timing-function: cubic-bezier(0.17, 0.61, 0.18, 1.03), ease-in;
-  transition-duration: 0.7s, 0.4s;
-  transition-delay: 0.5s;
+  transition-timing-function: $easing-decelerate, ease-in;
+  transition-duration: $duration-long, $duration-short;
+  transition-delay: $delay-medium;
 
   @media (min-width: $stop-scaling) {
     width: 509px;

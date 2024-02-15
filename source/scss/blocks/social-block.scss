@@ -19,7 +19,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
-  transition: color 0.35s ease-out;
+  transition: color $duration-short ease-out;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -38,9 +38,9 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     transition-property: transform, background-color, border-color;
-    transition-timing-function: cubic-bezier(0.24, 0.72, 0.4, 1.48), ease-out;
-    transition-duration: 0.4s;
-    transition-delay: 0.5s, 0.3s, 0.3s;
+    transition-timing-function: $easing-bouncing, ease-out;
+    transition-duration: $duration-short;
+    transition-delay: $delay-medium, $delay-short, $delay-short;
     z-index: -1;
 
     body:not(.loaded) & {
@@ -63,7 +63,7 @@
     &::before {
       transform: scale(1.12);
       transition-timing-function: ease-out;
-      transition-delay: 0.3s;
+      transition-delay: $delay-short;
     }
   }
 
@@ -102,7 +102,7 @@
   margin-top: 1.5rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease-in;
+  transition: opacity $duration-short ease-in;
 
   @media (min-width: $stop-scaling) {
     margin-top: 15px;
@@ -151,15 +151,15 @@
       opacity: 1;
       transform: translateY(0rem);
       transition-timing-function: ease-out;
-      transition-duration: 0.35s, 0.5s;
-      transition-delay: 0.15s, 0.15s;
+      transition-duration: $duration-short, $duration-medium;
+      transition-delay: $delay-extra-short, $delay-extra-short;
 
       &:nth-child(2) {
-        transition-delay: 0.3s, 0.3s;
+        transition-delay: $delay-short, $delay-short;
       }
 
       &:nth-child(3) {
-        transition-delay: 0.45s, 0.45s;
+        transition-delay: $delay-medium, $delay-medium;
       }
     }
   }
@@ -170,9 +170,9 @@
     opacity: 0;
     transform: translateY(1rem);
     transition-property: transform, opacity;
-    transition-timing-function: cubic-bezier(0.83,-0.48, 0.87, 0.63), ease-in;
-    transition-duration: 0.25s;
-    transition-delay: 0.25s, 0s;
+    transition-timing-function: $easing-decelerate, ease-in;
+    transition-duration: $duration-short;
+    transition-delay: $delay-short, 0s;
 
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
@@ -196,7 +196,7 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
-  transition: color 0.35s ease-out;
+  transition: color $duration-short ease-out;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
