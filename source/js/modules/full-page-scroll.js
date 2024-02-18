@@ -57,29 +57,18 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-    let isHistoryScreen = false;
     this.screenElements.forEach((screen) => {
-      if (this.screenElements[this.activeScreen].id !== `top` && screen.id === `story` && screen.classList.contains(ACTIVE_CLASS)) {
-        isHistoryScreen = true;
-        screen.classList.remove(ACTIVE_CLASS);
-        screen.classList.add(ANIMATED_CLASS);
-        setTimeout(() => {
-          screen.classList.add(HIDDEN_CLASS);
-          screen.classList.remove(ANIMATED_CLASS);
-        }, TIMEOUT);
-      } else {
+      screen.classList.remove(ACTIVE_CLASS);
+      screen.classList.add(ANIMATED_CLASS);
+      setTimeout(() => {
         screen.classList.add(HIDDEN_CLASS);
-        screen.classList.remove(ACTIVE_CLASS);
-      }
+        screen.classList.remove(ANIMATED_CLASS);
+      }, TIMEOUT);
     });
 
-    if (isHistoryScreen) {
-      setTimeout(() => {
-        this.setActiveScreen();
-      }, TIMEOUT);
-    } else {
+    setTimeout(() => {
       this.setActiveScreen();
-    }
+    }, TIMEOUT);
   }
 
   setActiveScreen() {

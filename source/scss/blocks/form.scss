@@ -30,41 +30,25 @@
   }
 }
 
-.form__field {
+.form__wrapper {
   flex: none;
   margin-right: 3rem;
-  padding: 0 5.6rem;
   height: 6rem;
   width: calc(100% - 21rem);
-  text-transform: uppercase;
-  font: inherit;
-  font-size: 2.4rem;
-  line-height: 1.2;
-  color: $c-dark;
-  border: 0;
   border-radius: 3rem;
-  transition: width $duration-long $easing-decelerate;
-  outline: none;
-
-  &:focus {
-    border: 1px solid $c-purple;
-  }
+  overflow: hidden;
 
   @media (min-width: $stop-scaling) {
     margin-right: 30px;
-    padding: 0 56px;
     height: 60px;
     width: calc(100% - 210px);
-    font-size: 24px;
     border-radius: 30px;
   }
 
   @media (orientation: portrait) {
     margin-right: 1rem;
-    padding: 0 2.5rem;
     width: calc(100% - 5rem);
     height: 4rem;
-    font-size: 1.6rem;
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
@@ -73,14 +57,85 @@
 
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-right: 1rem;
-    padding: 0 2.5rem;
     width: calc(100% - 5rem);
     height: 4rem;
+  }
+}
+
+.form__field {
+  width: 100%;
+  height: 100%;
+  padding: 0 5.6rem;
+  text-transform: uppercase;
+  font: inherit;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  color: $c-dark;
+  border: 0;
+  border-radius: 3rem;
+  outline: none;
+  transform-origin: right;
+  transition-property: transform, opacity;
+  transition-timing-function: $easing-decelerate, ease-in;
+  transition-duration: $duration-long, $duration-extra-short;
+  transition-delay: ($delay-extra-short + $duration-extra-short), $delay-extra-short;
+
+  @media (min-width: $stop-scaling) {
+    padding: 0 56px;
+    font-size: 24px;
+    border-radius: 30px;
+  }
+
+  @media (orientation: portrait) {
+    padding: 0 2.5rem;
     font-size: 1.6rem;
   }
 
-  .screen.screen--game:not(.active) & {
-    width: 0;
+  @media (max-width: $mobile) and (orientation: landscape) {
+    padding: 0 2.5rem;
+    font-size: 1.6rem;
+  }
+
+  &::placeholder {
+    color: $c-dark;
+    opacity: 0.4;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    transition-duration: $duration-extra-short;
+
+    .screen.screen--game:not(.active) & {
+      opacity: 0;
+    }
+
+    .screen.screen--game.active & {
+      transition-delay: ($delay-extra-long + $duration-short);
+    }
+  }
+
+  &:focus {
+    border: 1px solid $c-purple;
+  }
+
+  .screen.screen--game:not(.active) &,
+  .screen.screen--game.animated:not(.active) & {
+    transform: translateX(calc(100% - (3rem * 2)));
+    opacity: 0;
+
+    @media (orientation: portrait) {
+      transform: translateX(calc(100% - 4rem));
+    }
+
+    @media (max-width: $tablet) and (orientation: landscape) {
+      transform: translateX(calc(100% - 6rem));
+    }
+
+    @media (max-width: $mobile) and (orientation: landscape) {
+      transform: translateX(calc(100% - 4rem));
+    }
+  }
+
+  .screen.screen--game.animated:not(.active) & {
+    transition-delay: 0ms, ($duration-long - $duration-extra-short);
   }
 }
 
@@ -111,6 +166,22 @@
     height: 4rem;
   }
 
+  span {
+    .screen.screen--game:not(.active) & {
+      opacity: 0;
+    }
+
+    .screen.screen--game.active & {
+      transition-property: opacity;
+      transition-timing-function: ease-in;
+      transition-duration: $duration-extra-short;
+    }
+
+    .screen.screen--game.animated:not(.active) & {
+      transition-delay: $delay-long;
+    }
+  }
+
   svg {
     @include center;
     display: none;
@@ -128,6 +199,16 @@
 
     @media (max-width: $tablet) and (orientation: landscape) {
       display: block;
+    }
+
+    .screen.screen--game:not(.active) & {
+      opacity: 0;
+    }
+
+    .screen.screen--game.active & {
+      transition-property: opacity;
+      transition-timing-function: ease-in;
+      transition-duration: $duration-extra-short;
     }
   }
 }
