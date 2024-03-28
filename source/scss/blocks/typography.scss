@@ -1,0 +1,24 @@
+.typography {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.typography-word {
+  display: inline-flex;
+  align-items: baseline;
+  margin-top: -0.2em;
+  padding-right: 0.2em;
+  padding-top: 0.2em;
+  overflow: hidden;
+
+  span {
+    flex-shrink: 0;
+    transform: translateY(120%);
+
+    .screen.active & {
+      transform: none;
+      transition: transform $duration-medium $easing-decelerate var(--delay);
+    }
+  }
+}

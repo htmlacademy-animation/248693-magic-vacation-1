@@ -41,7 +41,7 @@
   @media (min-width: $stop-scaling) {
     margin-right: 30px;
     height: 60px;
-    width: calc(100% - 210px);
+    width: calc(100% - 310px);
     border-radius: 30px;
   }
 
@@ -96,28 +96,9 @@
     font-size: 1.6rem;
   }
 
-  &::placeholder {
-    color: $c-dark;
-    opacity: 0.4;
-    transition-property: opacity;
-    transition-timing-function: ease-in;
-    transition-duration: $duration-extra-short;
-
-    .screen.screen--game:not(.active) & {
-      opacity: 0;
-    }
-
-    .screen.screen--game.active & {
-      transition-delay: ($delay-extra-long + $duration-short);
-    }
-  }
-
-  &:focus {
-    border: 1px solid $c-purple;
-  }
-
   .screen.screen--game:not(.active) &,
-  .screen.screen--game.animated:not(.active) & {
+  .screen.screen--game.animated:not(.active) &,
+  .screen.screen--result:not(.screen--show) & {
     transform: translateX(calc(100% - (3rem * 2)));
     opacity: 0;
 
@@ -137,11 +118,44 @@
   .screen.screen--game.animated:not(.active) & {
     transition-delay: 0ms, ($duration-long - $duration-extra-short);
   }
+
+  .screen.screen--result.screen--show & {
+    transition-delay: ($delay-medium + $duration-extra-short), $delay-medium;
+  }
+
+  &::placeholder {
+    color: $c-dark;
+    opacity: 0.4;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    transition-duration: $duration-extra-short;
+
+    .screen.screen--game:not(.active) &,
+    .screen.screen--result:not(.screen--show) & {
+      opacity: 0;
+    }
+
+    .screen.screen--game.active & {
+      transition-delay: ($delay-extra-long + $duration-short);
+    }
+
+    .screen.screen--result.screen--show & {
+      transition-delay: ($delay-medium + $duration-extra-short + $delay-extra-long);
+    }
+  }
+
+  &:focus {
+    border: 1px solid $c-purple;
+  }
 }
 
 .form__button {
   width: 18rem;
   flex-shrink: 0;
+
+  @media (min-width: $stop-scaling) {
+    width: 280px;
+  }
 
   @media (orientation: portrait) {
     position: relative;
@@ -166,18 +180,35 @@
     height: 4rem;
   }
 
+  .screen.screen--result:not(.screen--show) & {
+    opacity: 0;
+  }
+
+  .screen.screen--result.screen--show & {
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    transition-duration: $duration-extra-short;
+    transition-delay: $delay-medium;
+  }
+
   span {
-    .screen.screen--game:not(.active) & {
+    .screen.screen--game:not(.active) &,
+    .screen.screen--result:not(.screen--show) & {
       opacity: 0;
     }
 
-    .screen.screen--game.active & {
+    .screen.screen--game.active &,
+    .screen.screen--result.screen--show & {
       transition-property: opacity;
       transition-timing-function: ease-in;
       transition-duration: $duration-extra-short;
     }
 
-    .screen.screen--game.animated:not(.active) & {
+    .screen.screen--result.screen--show & {
+      transition-delay: ($delay-medium + $duration-extra-short);
+    }
+
+    .screen.screen--game.animated:not(.active) {
       transition-delay: $delay-long;
     }
   }
@@ -214,7 +245,7 @@
 }
 
 .form--result {
-  .form__field {
+  .form__wrapper {
     width: calc(100% - 31rem);
 
     @media (min-width: $stop-scaling) {
@@ -232,5 +263,9 @@
     @media (max-width: $mobile) and (orientation: landscape) {
       width: calc(100% - 5rem);
     }
+  }
+
+  .form__button {
+    flex-grow: 1;
   }
 }
