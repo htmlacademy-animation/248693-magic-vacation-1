@@ -82,11 +82,11 @@
     <section class="screen screen--hidden screen--intro" id="top">
       <div class="screen__wrapper">
         <div class="intro">
-          <h1 class="intro__title">Таинственный отпуск</h1>
+          <h1 class="intro__title" data-typography>Таинственный отпуск</h1>
           <div class="intro__content">
             <div class="intro__info">
               <p class="intro__label">Даты проведения конкурса:</p>
-              <p class="intro__date">01 — 31.05 / 2020</p>
+              <p class="intro__date" data-typography>01 — 31.05 / 2020</p>
             </div>
             <div class="intro__message">
               <p>
@@ -135,7 +135,7 @@
         <div class="swiper-wrapper">
 
           <div class="slider__item swiper-slide">
-            <h2 class="slider__item-title">История</h2>
+            <h2 class="slider__item-title" data-typography>История</h2>
             <p class="slider__item-text">Джеймс Таргет был основателем компании &laquo;Fjord Inc.&raquo;. С&nbsp;1965 года &laquo;Fjord Inc.&raquo; прославилась надёжными и&nbsp;удобными чемоданами и&nbsp;аксессуарами для туристов.</p>
           </div>
 
@@ -188,7 +188,7 @@
     <section class="screen screen--hidden screen--prizes" id="prizes">
       <div class="screen__wrapper">
         <div class="prizes">
-          <h2 class="prizes__title">ПРизы</h2>
+          <h2 class="prizes__title" data-typography>ПРизы</h2>
           <div class="prizes__lead">
             <p>Найди ответ и&nbsp;получи один из&nbsp;призов:</p>
           </div>
@@ -269,7 +269,7 @@
     <section class="screen screen--hidden screen--rules" id="rules">
       <div class="screen__wrapper">
         <div class="rules">
-          <h2 class="rules__title">Правила</h2>
+          <h2 class="rules__title" data-typography>Правила</h2>
           <div class="rules__lead">
             <p>Для того чтобы получить наследство Джеймса Таргета, тебе нужно выведать у&nbsp;&laquo;Сони&raquo;, куда предстоит отправиться тебе в&nbsp;случае победы</p>
           </div>
@@ -308,7 +308,7 @@
       <div class="screen__wrapper">
         <div class="game">
           <div class="game__header">
-            <h2 class="game__title">Игра</h2>
+            <h2 class="game__title" data-typography>Игра</h2>
             <div class="game__counter">
               <span>05</span>:<span>00</span>
             </div>
@@ -320,7 +320,7 @@
               </div>
               <div class="chat__footer">
                 <form action="#" method="post" class="form" id="message-form">
-                  <label class="form__wrapper">
+                  <label class="form__wrapper" aria-label="Поле для ввода вопроса">
                     <input type="text" class="form__field" id="message-field" placeholder="Задай вопрос">
                   </label>
                   <button class="form__button btn">
@@ -336,9 +336,9 @@
           </div>
           <!-- временные кнопки для показа результата -->
           <div class="game__buttons">
-            <button class="game__button btn js-show-result" type="button" data-target="result">Положительный результат</button>
-            <button class="game__button btn js-show-result" type="button" data-target="result2">Положительный результат - 2</button>
-            <button class="game__button btn js-show-result" type="button" data-target="result3">Отрицательный результат</button>
+            <button class="game__button btn js-show-result" type="button" data-target="result"><span>Положительный результат</span></button>
+            <button class="game__button btn js-show-result" type="button" data-target="result2"><span>Положительный результат - 2</span></button>
+            <button class="game__button btn js-show-result" type="button" data-target="result3"><span>Отрицательный результат</span></button>
           </div>
         </div>
       </div>
@@ -381,10 +381,12 @@
           </div>
           <div class="result__form">
             <form action="#" method="post" class="form form--result">
-              <label for="email-field" class="form__label">зарегистрируй результат</label>
-              <input type="email" class="form__field" id="email-field" placeholder="e-mail для регистации результата и получения приза" required>
+              <div class="form__wrapper" aria-label="зарегистрируй результат">
+                <label for="email-field" class="form__label">зарегистрируй результат</label>
+                <input type="email" class="form__field" id="email-field" placeholder="e-mail для регистации результата и получения приза" required>
+              </div>
               <button class="form__button btn">
-                отправить
+                <span>отправить</span>
                 <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path stroke="currentColor" stroke-width="2" d="M9 19V1"/>
                   <path d="M1 9l8-8 8 8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -399,11 +401,22 @@
     <section class="screen screen--hidden screen--result" id="result2">
       <div class="screen__wrapper">
         <div class="result result--prize">
-          <div class="result__image">
-            <picture>
-              <source srcset="img/result2-mob.png 1x, img/result2-mob@2x.png 2x" media="(max-width: 768px) and (orientation: portrait)">
-              <img src="img/result2.png" srcset="img/result2@2x.png 2x" alt="">
-            </picture>
+          <div class="result__images">
+            <div class="result__image result__image--leaf-blue-1">
+              <img src="img/module-2/win-suitcase/leaf-blue-1.png" width="279" alt="">
+            </div>
+            <div class="result__image result__image--leaf-blue-2">
+              <img src="img/module-2/win-suitcase/leaf-blue-2.png" width="279" alt="">
+            </div>
+            <div class="result__image result__image--leaf-green">
+              <img src="img/module-2/win-suitcase/leaf-green.png" width="332" alt="">
+            </div>
+            <div class="result__image result__image--suitcase">
+              <img src="img/module-2/win-suitcase/suitcase.png" width="415" alt="">
+            </div>
+            <div class="result__image result__image--flamingo">
+              <img src="img/module-2/win-suitcase/flamingo.png" width="320" alt="">
+            </div>
           </div>
           <h2 class="result__title">
             <span class="visually-hidden">ПОбеда!</span>
@@ -433,10 +446,12 @@
           </div>
           <div class="result__form">
             <form action="#" method="post" class="form form--result">
-              <label for="email-field2" class="form__label">зарегистрируй результат</label>
-              <input type="email" class="form__field" id="email-field2" placeholder="e-mail для регистации результата и получения приза" required>
+              <div class="form__wrapper">
+                <label for="email-field2" class="form__label">зарегистрируй результат</label>
+                <input type="email" class="form__field" id="email-field2" placeholder="e-mail для регистации результата и получения приза" required>
+              </div>
               <button class="form__button btn">
-                отправить
+                <span>отправить</span>
                 <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path stroke="currentColor" stroke-width="2" d="M9 19V1"/>
                   <path d="M1 9l8-8 8 8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>

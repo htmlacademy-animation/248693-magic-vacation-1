@@ -22,11 +22,14 @@ $index: 1.38871;
 
 $easing-decelerate: cubic-bezier(0.17, 0.61, 0.18, 1);
 $easing-bouncing: cubic-bezier(0.24, 0.72, 0.4, 1.48);
+$easing-in-out: cubic-bezier(0.37, 0, 0.63, 1);
+$easing-in-out-revert: cubic-bezier(0.63, 0.26, 0.33, 0.62);
 
 $duration-extra-short: 150ms;
 $duration-short: 350ms;
 $duration-medium: 600ms;
 $duration-long: 800ms;
+$duration-extra-long: 1.2s;
 
 $delay-extra-short: 200ms;
 $delay-short: 350ms;
