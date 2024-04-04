@@ -24,7 +24,7 @@ export default class Typography {
     if (!this._element) {
       return;
     }
-    const text = this._element.textContent.trim().split(` `).filter((latter) => latter !== ``);
+    const text = this._element.textContent.trim().split(/\s/g).filter((latter) => latter !== ``);
 
     const content = text.reduce((fragmentWord, word) => {
       const letterContainer = word.split(``).reduce((fragmentLetter, letter) => {
