@@ -301,6 +301,29 @@
     opacity: 0.5;
     pointer-events: none;
   }
+
+  .screen:not(.active) &.js-control-prev,
+  .screen:not(.active) &.js-control-next {
+    opacity: 0;
+  }
+
+  .screen.active &.js-control-prev {
+    transition: opacity $duration-short ease-in ($delay-long + $duration-short);
+    animation: rotate-prev-button $duration-long $easing-decelerate ($delay-long + $duration-short) both;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  .screen.active &.js-control-next {
+    transition: opacity $duration-short ease-in ($delay-long + $duration-short);
+    animation: rotate-next-button $duration-long $easing-decelerate ($delay-long + $duration-short) both;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
 }
 
 .slider__pagination.swiper-pagination {
@@ -315,6 +338,14 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+
+  .screen:not(.active) & {
+    opacity: 0;
+  }
+
+  .screen.active & {
+    transition: opacity $duration-extra-short ease-in ($delay-long + $duration-short);
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
@@ -356,5 +387,23 @@
       height: 0.4rem;
       background-color: $c-light;
     }
+  }
+}
+
+@keyframes rotate-prev-button {
+  0% {
+    transform: translateX(-3em) rotate(-90deg);
+  }
+  100% {
+    transform: translateX(0rem) rotate(0deg);
+  }
+}
+
+@keyframes rotate-next-button {
+  0% {
+    transform: translateX(3rem) rotate(90deg);
+  }
+  100% {
+    transform: translateX(0rem) rotate(0deg);
   }
 }

@@ -48,21 +48,60 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
-  transform: translateY(100%);
-  transition: transform $duration-long $easing-decelerate;
 
-  body.loaded & {
-    transform: translateY(0%);
+  .screen--intro & {
+    transform: translateY(100%);
+  }
+
+  body.loaded .screen--intro.animated & {
+    animation: slide-out-disclaimer $duration-long $easing-decelerate both;
+  }
+
+  body.loaded .screen--intro.active & {
+    animation: slide-in-disclaimer $duration-long $easing-decelerate both;
+  }
+
+  body[data-active-screen="prizes"]:not([data-prev-screen="rules"])  & {
+    transform: translateY(100%);
+  }
+
+  .screen--prizes.screen--hidden &,
+  .screen--prizes.animated & {
+    body:not([data-active-screen="rules"]) & {
+      animation: slide-out-disclaimer $duration-long $easing-decelerate both;
+    }
+  }
+
+  .screen--prizes.active & {
+    body:not([data-prev-screen="rules"]) & {
+      animation: slide-in-disclaimer $duration-long $easing-decelerate both;
+    }
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 0 3.6rem 0 0;
+    background-color: transparent;
+    transition: width $duration-extra-short $easing-decelerate $delay-extra-short, height $duration-extra-short $easing-decelerate $delay-extra-short;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $c-light;
+      border-radius: inherit;
+      z-index: -1;
+    }
 
     &.screen__footer--full {
       width: 100%;
       height: 18rem;
+      transition-duration: $duration-short, $duration-short;
+      transition-delay: 0s, 0s;
     }
   }
 
@@ -70,10 +109,26 @@
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 0 3.6rem 0 0;
+    background-color: transparent;
+    transition: width $duration-extra-short $easing-decelerate $delay-extra-short, height $duration-extra-short $easing-decelerate $delay-extra-short;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $c-light;
+      border-radius: inherit;
+      z-index: -1;
+    }
 
     &.screen__footer--full {
       width: 100%;
       height: 16rem;
+      transition-duration: $duration-short, $duration-short;
+      transition-delay: 0s, 0s;
     }
   }
 }
@@ -83,17 +138,21 @@
 
   @media (max-width: $tablet) and (orientation: portrait) {
     opacity: 0;
+    transition: opacity $duration-extra-short ease-in;
 
     .screen__footer--full & {
       opacity: 1;
+      transition-delay: $delay-extra-short;
     }
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     opacity: 0;
+    transition: opacity $duration-extra-short ease-in;
 
     .screen__footer--full & {
       opacity: 1;
+      transition-delay: $delay-extra-short;
     }
   }
 }
@@ -111,19 +170,23 @@
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: block;
+    transition: opacity $duration-extra-short ease-in $delay-extra-short;
 
     .screen__footer--full & {
       opacity: 0;
       pointer-events: none;
+      transition-delay: 0s;
     }
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     display: block;
+    transition: opacity $duration-extra-short ease-in $delay-extra-short;
 
     .screen__footer--full & {
       opacity: 0;
       pointer-events: none;
+      transition-delay: 0s;
     }
   }
 
@@ -213,6 +276,14 @@
   text-align: center;
   font-size: 1.2rem;
   line-height: 1.2;
+  opacity: 0;
+  transition: opacity $duration-extra-short ease-in;
+
+  .screen.active & {
+    opacity: 1;
+    transition-duration: $duration-medium;
+    transition-delay: $delay-extra-short;
+  }
 
   @media (min-width: $stop-scaling) {
     padding: 8px 0;
@@ -309,7 +380,7 @@
   transition: transform $duration-long $easing-decelerate;
   z-index: 1;
 
-  .animated & {
+  .animated:not(.screen--intro) & {
     transform: scaleY(1);
   }
 }
@@ -379,4 +450,22 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+@keyframes slide-in-disclaimer {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out-disclaimer {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
 }

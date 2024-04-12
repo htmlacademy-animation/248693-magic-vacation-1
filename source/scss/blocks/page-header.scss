@@ -302,12 +302,36 @@
       color: $c-purple;
       outline: none;
 
+      .theme-violet & {
+        color: $c-dark;
+      }
+
+      .theme-blue & {
+        color: $c-lightblue;
+      }
+
+      .theme-lightblue & {
+        color: $c-blue;
+      }
+
       &::after {
         opacity: 1;
         background-color: $c-purple;
         transform: scaleX(1);
         transform-origin: left;
         transition-delay: 0s, 0s, 0s;
+
+        .theme-violet & {
+          background-color: $c-dark;
+        }
+
+        .theme-blue & {
+          background-color: $c-lightblue;
+        }
+
+        .theme-lightblue & {
+          background-color: $c-blue;
+        }
       }
     }
   }
