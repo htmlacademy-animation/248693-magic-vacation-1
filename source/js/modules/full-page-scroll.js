@@ -1,6 +1,7 @@
 import throttle from 'lodash/throttle';
 
 const TIMEOUT = 800;
+const TIMEOUT_SHORT = 200;
 const HIDDEN_CLASS = `screen--hidden`;
 const ACTIVE_CLASS = `active`;
 const ANIMATED_CLASS = `animated`;
@@ -14,6 +15,7 @@ export default class FullPageScroll {
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
+    this.prevScreen = null;
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
@@ -46,6 +48,7 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.prevScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
   }
@@ -57,23 +60,35 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
+    document.body.setAttribute(`data-prev-screen`, this.screenElements[this.prevScreen].id);
+    document.body.setAttribute(`data-active-screen`, this.screenElements[this.activeScreen].id);
     this.screenElements.forEach((screen) => {
+      console.log(this.screenElements[this.prevScreen].id === screen.id);
+      console.log(this.screenElements[this.activeScreen].id === screen.id);
+
       screen.classList.remove(ACTIVE_CLASS);
       screen.classList.add(ANIMATED_CLASS);
       setTimeout(() => {
         screen.classList.add(HIDDEN_CLASS);
         screen.classList.remove(ANIMATED_CLASS);
-      }, TIMEOUT);
+      }, this.screenElements[this.activeScreen].id === `prizes` ? TIMEOUT : TIMEOUT_SHORT);
     });
 
     setTimeout(() => {
       this.setActiveScreen();
-    }, TIMEOUT);
+    }, this.screenElements[this.activeScreen].id === `prizes` ? TIMEOUT : TIMEOUT_SHORT);
   }
 
   setActiveScreen() {
     this.screenElements[this.activeScreen].classList.remove(HIDDEN_CLASS);
     setTimeout(() => {
+      if (this.screenElements[this.activeScreen].id === `story` && document.body.classList.value.search(/theme/) < 0) {
+        document.body.classList.add(`theme-violet`);
+      } else {
+        const classes = document.body.classList.value.split(/\s/g).filter((className) => className.match(/theme/));
+        document.body.classList.remove(...classes);
+      }
+
       this.screenElements[this.activeScreen].classList.add(ACTIVE_CLASS);
     }, 100);
   }

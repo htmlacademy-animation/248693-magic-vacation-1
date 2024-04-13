@@ -2,6 +2,19 @@
   color: $c-dark;
   background-color: $c-light;
 
+  .screen--rules.screen--hidden &,
+  .screen--rules.animated & {
+    body:not([data-active-screen="prizes"]) & {
+      animation: slide-out-disclaimer $duration-long $easing-decelerate both;
+    }
+  }
+
+  .screen--rules & {
+    body[data-active-screen="rules"]:not([data-prev-screen="prizes"]) & {
+      animation: slide-in-disclaimer $duration-long $easing-decelerate both;
+    }
+  }
+
   @media (max-width: $tablet) and (orientation: portrait) {
     font-weight: 400;
     color: $c-light;
@@ -22,6 +35,12 @@
     text-transform: uppercase;
     font-size: 1.2rem;
     line-height: 1.2;
+    opacity: 0;
+    transition: opacity $duration-medium ease-in $delay-extra-short;
+
+    .screen.active & {
+      opacity: 1;
+    }
 
     @media (min-width: $stop-scaling) {
       font-size: 12px;
