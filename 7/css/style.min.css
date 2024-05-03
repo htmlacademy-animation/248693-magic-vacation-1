@@ -2728,6 +2728,10 @@ body:not(.loaded) .page-header__menu {
   width: 100%;
   height: auto;
 }
+.prizes__icon svg {
+  width: 100%;
+  height: auto;
+}
 
 .prizes__desc {
   display: flex;
