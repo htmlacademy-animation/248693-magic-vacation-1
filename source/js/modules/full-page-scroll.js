@@ -14,6 +14,7 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.primaryPrizeElement = document.getElementById(`start`);
 
     this.prevScreen = null;
     this.activeScreen = 0;
@@ -63,14 +64,16 @@ export default class FullPageScroll {
     document.body.setAttribute(`data-prev-screen`, this.screenElements[this.prevScreen].id);
     document.body.setAttribute(`data-active-screen`, this.screenElements[this.activeScreen].id);
     this.screenElements.forEach((screen) => {
-      console.log(this.screenElements[this.prevScreen].id === screen.id);
-      console.log(this.screenElements[this.activeScreen].id === screen.id);
-
       screen.classList.remove(ACTIVE_CLASS);
       screen.classList.add(ANIMATED_CLASS);
       setTimeout(() => {
         screen.classList.add(HIDDEN_CLASS);
         screen.classList.remove(ANIMATED_CLASS);
+
+        if (this.screenElements[this.activeScreen].id === `prizes` && !this.primaryPrizeElement.classList.contains(`active`)) {
+          this.primaryPrizeElement.classList.add(`active`);
+          this.primaryPrizeElement.beginElement();
+        }
       }, this.screenElements[this.activeScreen].id === `prizes` ? TIMEOUT : TIMEOUT_SHORT);
     });
 
