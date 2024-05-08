@@ -105,6 +105,7 @@
 }
 
 .prizes__item {
+  margin-top: -7rem;
   margin-left: 7.5rem;
 
   @media (min-width: $stop-scaling) {
@@ -114,6 +115,7 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     display: flex;
     align-items: flex-end;
+    margin-top: 0;
     margin-left: 0;
     margin-bottom: 2.8rem;
 
@@ -174,19 +176,31 @@
     }
 
     .prizes__icon {
-      width: 18.8rem;
+      width: 28.8rem;
+      margin-left: -12rem;
+      opacity: 0;
+      transition: opacity $duration-extra-short ease-in;
+
+      .screen.active & {
+        opacity: 1;
+        transition-duration: $duration-medium;
+        transition-delay: $delay-extra-short;
+      }
 
       @media (min-width: $stop-scaling) {
-        width: 188px;
+        width: 268px;
+        margin-left: -108px;
       }
 
       @media (max-width: $tablet) and (orientation: portrait) {
-        margin-right: 1.3rem;
         width: 10.211rem;
+        margin-left: -3rem;
+        margin-right: 4.3rem;
       }
 
       @media (max-width: $tablet) and (orientation: landscape) {
-        width: 9.5rem;
+        margin-left: -5.4rem;
+        width: 13rem;
       }
 
       @media (max-width: $mobile) and (orientation: landscape) {

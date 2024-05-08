@@ -2,6 +2,7 @@ import throttle from 'lodash/throttle';
 
 const TIMEOUT = 800;
 const TIMEOUT_SHORT = 200;
+const TIMEOUT_SHOW_SECONDARY_PRIZE = 3000;
 const HIDDEN_CLASS = `screen--hidden`;
 const ACTIVE_CLASS = `active`;
 const ANIMATED_CLASS = `animated`;
@@ -15,6 +16,7 @@ export default class FullPageScroll {
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
     this.primaryPrizeElement = document.getElementById(`start`);
+    this.secondaryPrizeElement = document.getElementById(`cloud1anim`);
 
     this.prevScreen = null;
     this.activeScreen = 0;
@@ -70,9 +72,18 @@ export default class FullPageScroll {
         screen.classList.add(HIDDEN_CLASS);
         screen.classList.remove(ANIMATED_CLASS);
 
-        if (this.screenElements[this.activeScreen].id === `prizes` && !this.primaryPrizeElement.classList.contains(`active`)) {
-          this.primaryPrizeElement.classList.add(`active`);
-          this.primaryPrizeElement.beginElement();
+        if (this.screenElements[this.activeScreen].id === `prizes`) {
+          if (!this.primaryPrizeElement.classList.contains(`active`)) {
+            this.primaryPrizeElement.classList.add(`active`);
+            this.primaryPrizeElement.beginElement();
+          }
+
+          setTimeout(() => {
+            if (!this.secondaryPrizeElement.classList.contains(`active`)) {
+              this.secondaryPrizeElement.classList.add(`active`);
+              this.secondaryPrizeElement.beginElement();
+            }
+          }, TIMEOUT_SHOW_SECONDARY_PRIZE);
         }
       }, this.screenElements[this.activeScreen].id === `prizes` ? TIMEOUT : TIMEOUT_SHORT);
     });
