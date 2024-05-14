@@ -3,6 +3,7 @@ import throttle from 'lodash/throttle';
 const TIMEOUT = 800;
 const TIMEOUT_SHORT = 200;
 const TIMEOUT_SHOW_SECONDARY_PRIZE = 3000;
+const TIMEOUT_SHOW_CONSOLATION_PRIZE = 5500;
 const HIDDEN_CLASS = `screen--hidden`;
 const ACTIVE_CLASS = `active`;
 const ANIMATED_CLASS = `animated`;
@@ -17,6 +18,7 @@ export default class FullPageScroll {
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
     this.primaryPrizeElement = document.getElementById(`start`);
     this.secondaryPrizeElement = document.getElementById(`cloud1anim`);
+    this.consolationPrizeElement = document.getElementById(`animStart`);
 
     this.prevScreen = null;
     this.activeScreen = 0;
@@ -84,6 +86,13 @@ export default class FullPageScroll {
               this.secondaryPrizeElement.beginElement();
             }
           }, TIMEOUT_SHOW_SECONDARY_PRIZE);
+
+          setTimeout(() => {
+            if (!this.consolationPrizeElement.classList.contains(`active`)) {
+              this.consolationPrizeElement.classList.add(`active`);
+              this.consolationPrizeElement.beginElement();
+            }
+          }, TIMEOUT_SHOW_CONSOLATION_PRIZE);
         }
       }, this.screenElements[this.activeScreen].id === `prizes` ? TIMEOUT : TIMEOUT_SHORT);
     });
