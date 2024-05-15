@@ -61,7 +61,7 @@
     animation: slide-in-disclaimer $duration-long $easing-decelerate both;
   }
 
-  body[data-active-screen="prizes"]:not([data-prev-screen="rules"])  & {
+  body[data-active-screen="prizes"]:not([data-prev-screen="rules"]) & {
     transform: translateY(100%);
   }
 
@@ -456,6 +456,7 @@
   0% {
     transform: translateY(100%);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -465,6 +466,7 @@
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(100%);
   }
