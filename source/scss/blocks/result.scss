@@ -231,6 +231,59 @@
     height: 100%;
     stroke-width: 0.2rem;
     stroke-linejoin: round;
+    overflow: visible;
+  }
+
+  &--win {
+    svg {
+      .screen:not(.screen--show) & {
+        transform: scale(1.2);
+      }
+
+      .screen.screen--show & {
+        transition-property: transform;
+        transition-duration: $duration-medium;
+        transition-timing-function: $easing-decelerate;
+      }
+    }
+
+    path {
+      stroke-dasharray: calc(var(--path-length) * 2);
+      stroke-dashoffset: calc(var(--path-length) * 3);
+
+      .screen.screen--show & {
+        stroke-dasharray: var(--path-length);
+        stroke-dashoffset: calc(var(--path-length) * 2);
+        transition-property: stroke-dasharray, stroke-dashoffset;
+        transition-duration: $duration-medium;
+        transition-timing-function: $easing-decelerate;
+      }
+    }
+  }
+
+  &--defeat {
+    path {
+      stroke-dasharray: calc(var(--path-length) * 2);
+      stroke-dashoffset: calc(var(--path-length) * 3);
+      transform: translateY(-100%);
+
+      .screen.screen--show & {
+        stroke-dasharray: var(--path-length);
+        stroke-dashoffset: calc(var(--path-length) * 2);
+        //transform: translateY(0);
+        transition-property: stroke-dasharray, stroke-dashoffset;
+        transition-duration: $duration-medium;
+        transition-timing-function: $easing-decelerate;
+        animation: letter-bounce $duration-medium cubic-bezier(0.69, 0.02, 0.86, 0.78) forwards;
+      }
+
+      @for $i from 1 through 9 {
+        .screen.screen--show &:nth-child(#{$i}) {
+          transition-delay: ($delay-extra-short * $i) / 4;
+          animation-delay: ($delay-extra-short * $i) / 3.5;
+        }
+      }
+    }
   }
 }
 
@@ -242,6 +295,18 @@
   font-size: 4.8rem;
   line-height: 0.906;
   letter-spacing: -0.01em;
+
+  .screen:not(.screen--show) & {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+
+  .screen.screen--show & {
+    transition-property: transform, opacity;
+    transition-duration: $duration-short;
+    transition-timing-function: $easing-decelerate, ease-in;
+    transition-delay: $delay-extra-short;
+  }
 
   @media (min-width: $stop-scaling) {
     margin-bottom: 20px;
@@ -497,5 +562,25 @@
 
   50% {
     transform: rotate(-3deg);
+  }
+}
+
+@keyframes letter-bounce {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  66% {
+    transform: translateY(0%);
+    animation-timing-function: cubic-bezier(0.17, 0.48, 0.67, 0.88);
+  }
+
+  83% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.52, 0.15, 0.83, 0.58);
+  }
+
+  100% {
+    transform: translateY(0%);
   }
 }

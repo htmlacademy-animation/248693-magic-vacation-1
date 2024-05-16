@@ -208,7 +208,7 @@
       transition-delay: ($delay-medium + $duration-extra-short);
     }
 
-    .screen.screen--game.animated:not(.active) {
+    .screen.screen--game.animated:not(.active) & {
       transition-delay: $delay-long;
     }
   }
