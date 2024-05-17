@@ -1893,7 +1893,6 @@ body[data-active-screen=rules]:not([data-prev-screen=prizes]) .screen--rules .di
   left: 0;
   z-index: 100;
   opacity: 0.5;
-  display: none;
 }
 
 .game__button {
