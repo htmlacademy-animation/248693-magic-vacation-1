@@ -43,7 +43,7 @@ window.addEventListener(`load`, function () {
   if (document.querySelector(`.result__title`)) {
     const pathElements = document.querySelectorAll(`.result__title path`);
     pathElements.forEach((element) => {
-      element.setAttribute(`style`, `--path-length: ${element.getTotalLength()}`);
+      element.setAttribute(`style`, `--path-length: ${Math.round(element.getTotalLength())}px`);
     });
   }
 });
