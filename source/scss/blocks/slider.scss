@@ -394,8 +394,9 @@
   0% {
     transform: translateX(-3em) rotate(-90deg);
   }
+
   100% {
-    transform: translateX(0rem) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
   }
 }
 
@@ -403,7 +404,8 @@
   0% {
     transform: translateX(3rem) rotate(90deg);
   }
+
   100% {
-    transform: translateX(0rem) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
   }
 }
