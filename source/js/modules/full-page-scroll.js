@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import Timer from "./timer";
 
 const TIMEOUT = 800;
 const TIMEOUT_SHORT = 200;
@@ -24,6 +25,8 @@ export default class FullPageScroll {
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
+
+    this.timer = new Timer({container: document.querySelector(`.game__counter`)});
   }
 
   init() {
@@ -99,6 +102,12 @@ export default class FullPageScroll {
 
     setTimeout(() => {
       this.setActiveScreen();
+
+      if (this.screenElements[this.activeScreen].id === `game`) {
+        this.timer.startTimer();
+      } else {
+        this.timer.resetTimer();
+      }
     }, this.screenElements[this.activeScreen].id === `prizes` ? TIMEOUT : TIMEOUT_SHORT);
   }
 
