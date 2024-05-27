@@ -22,7 +22,7 @@ export default class Timer {
       seconds: 0
     });
 
-    this.requestId = requestAnimationFrame(this.tick.bind(this));
+    this.tick();
   }
 
   resetTimer() {
