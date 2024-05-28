@@ -22,7 +22,7 @@ export default class Timer {
       seconds: 0
     });
 
-    this.requestId = requestAnimationFrame(this.tick.bind(this));
+    this.tick();
   }
 
   resetTimer() {
@@ -64,7 +64,15 @@ export default class Timer {
   }
 
   updateTime({minutes, seconds}) {
-    this.timerMinutesElement.textContent = Number(minutes) > 9 ? minutes : `0${minutes}`;
-    this.timerSecondsElement.textContent = Number(seconds) > 9 ? seconds : `0${seconds}`;
+    const formattedMinutes = Number(minutes) > 9 ? `${minutes}` : `0${minutes}`;
+    const formattedSeconds = Number(seconds) > 9 ? `${seconds}` : `0${seconds}`;
+
+    if (this.timerMinutesElement.textContent !== formattedMinutes) {
+      this.timerMinutesElement.textContent = formattedMinutes;
+    }
+
+    if (this.timerSecondsElement.textContent !== formattedSeconds) {
+      this.timerSecondsElement.textContent = formattedSeconds;
+    }
   }
 }

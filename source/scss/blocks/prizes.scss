@@ -128,19 +128,53 @@
     margin-left: 5rem;
   }
 
+  .prizes__desc b {
+    transition: opacity ease-in $duration-extra-short;
+  }
+
+  .prizes__desc span {
+    transition-property: transform, opacity;
+    transition-timing-function: $easing-decelerate, ease-in;
+    transition-duration: $duration-medium, $duration-short;
+  }
+
+  &:not(.active) {
+    .prizes__desc b {
+      opacity: 0;
+    }
+
+    .prizes__desc span {
+      transform: translateX(3rem);
+      opacity: 0;
+    }
+  }
+
   &--journeys {
+    opacity: 0;
+    transform: translateX(130%);
+    transition-property: transform, opacity;
+    transition-duration: $duration-extra-short, $duration-extra-short;
+    transition-timing-function: $easing-in-out-revert, ease-in;
+
+    &.active {
+      transform: translateX(0);
+      opacity: 1;
+      transition-duration: $duration-long, $duration-extra-short;
+      transition-delay: 2.4s, 0s;
+
+      .prizes__desc b {
+        transition-delay: 1.8s;
+      }
+
+      .prizes__desc span {
+        transition-delay: 2s;
+      }
+    }
+
     .prizes__icon {
       position: relative;
       left: -5.9rem;
       width: 26.8rem;
-      opacity: 0;
-      transition: opacity $duration-extra-short ease-in;
-
-      .screen.active & {
-        opacity: 1;
-        transition-duration: $duration-medium;
-        transition-delay: $delay-extra-short;
-      }
 
       @media (min-width: $stop-scaling) {
         left: -59px;
@@ -161,10 +195,40 @@
         width: 10rem;
       }
     }
+
+    .prizes__desc b {
+      min-width: 6.8rem;
+
+      @media (min-width: $stop-scaling) {
+        min-width: 80px;
+      }
+
+      @media (max-width: $tablet) and (orientation: landscape) {
+        min-width: 3.8rem;
+      }
+
+      @media (max-width: $tablet) and (orientation: portrait) {
+        min-width: auto;
+      }
+    }
   }
 
   &--cases {
     margin-left: 7rem;
+    opacity: 0;
+    transition: opacity $duration-extra-short ease-in;
+
+    &.active {
+      opacity: 1;
+
+      .prizes__desc b {
+        transition-delay: 1s;
+      }
+
+      .prizes__desc span {
+        transition-delay: 1.2s;
+      }
+    }
 
     @media (min-width: $stop-scaling) {
       margin-left: 70px;
@@ -177,15 +241,7 @@
 
     .prizes__icon {
       width: 28.8rem;
-      margin-left: -12rem;
-      opacity: 0;
-      transition: opacity $duration-extra-short ease-in;
-
-      .screen.active & {
-        opacity: 1;
-        transition-duration: $duration-medium;
-        transition-delay: $delay-extra-short;
-      }
+      margin-left: -10.4rem;
 
       @media (min-width: $stop-scaling) {
         width: 268px;
@@ -208,16 +264,52 @@
         margin-left: -3rem;
       }
     }
+
+    .prizes__desc b {
+      min-width: 6.8rem;
+
+      @media (min-width: $stop-scaling) {
+        min-width: 70px;
+      }
+
+      @media (max-width: $tablet) and (orientation: landscape) {
+        min-width: 3.2rem;
+      }
+
+      @media (max-width: $tablet) and (orientation: portrait) {
+        min-width: auto;
+      }
+    }
   }
 
   &--codes {
+    opacity: 0;
+    transform: translateX(3rem);
+    transition-property: transform, opacity;
+    transition-duration: $duration-extra-short, $duration-extra-short;
+    transition-timing-function: $easing-in-out-revert, ease-in;
+
+    &.active {
+      transform: translateX(0);
+      opacity: 1;
+      transition-duration: $duration-medium, $duration-extra-short;
+
+      .prizes__desc b {
+        transition-delay: 1.2s;
+      }
+
+      .prizes__desc span {
+        transition-delay: 1.4s;
+      }
+    }
+
     @media (max-width: $tablet) and (orientation: portrait) {
       padding-left: 0.8rem;
     }
 
     .prizes__icon {
       width: 26rem;
-      margin-left: -3rem;
+      margin-left: -0.8rem;
 
       @media (min-width: $stop-scaling) {
         width: 260px;
@@ -237,6 +329,22 @@
       @media (max-width: $mobile) and (orientation: landscape) {
         width: 10rem;
         margin-left: -1.2rem;
+      }
+    }
+
+    .prizes__desc b {
+      min-width: 19.8rem;
+
+      @media (min-width: $stop-scaling) {
+        min-width: 200px;
+      }
+
+      @media (max-width: $tablet) and (orientation: landscape) {
+        min-width: 9.8rem;
+      }
+
+      @media (max-width: $tablet) and (orientation: portrait) {
+        min-width: auto;
       }
     }
   }
@@ -295,6 +403,7 @@
     font-weight: 400;
     font-size: 12rem;
     line-height: 0.55;
+    text-align: right;
 
     @media (min-width: $stop-scaling) {
       font-size: 120px;
